@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
 
+    Transform colisaoSoco;
     Animator animator;
 
     int combo = 0;
@@ -14,6 +15,7 @@ public class PlayerCombat : MonoBehaviour
 
     void Start()
     {
+        colisaoSoco = transform.Find("ColisaoSoco");
         animator = GetComponent<Animator>();
     }
 
@@ -46,6 +48,12 @@ public class PlayerCombat : MonoBehaviour
     {
         podeAtacar = true;
         animator.SetInteger("comboSoco", 0);
+    }
+
+    void habilitaColisaoGolpe( int habilitar )
+    {
+        colisaoSoco.GetComponent<Collider>().enabled = habilitar == 1;
+        colisaoSoco.GetComponent<MeshRenderer>().enabled = habilitar == 1;
     }
 
 }
