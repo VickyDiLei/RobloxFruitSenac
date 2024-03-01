@@ -6,10 +6,11 @@ public class CombatCollision : MonoBehaviour
 {
     private void OnTriggerEnter(Collider collider)
     {
-        //if( collider.CompareTag("Inimigo"))
-        if( collider.GetComponent<EnemyController>() != null )
+
+        if ( collider.GetComponent<CharacterStatus>() != null )
         {
-            collider.GetComponent<EnemyController>().receberDano(1);
+            collider.GetComponent<CharacterStatus>().receberDano(1);
         }
+
     }
 }
