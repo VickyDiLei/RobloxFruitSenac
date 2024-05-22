@@ -8,10 +8,10 @@ public class EnemyController : MonoBehaviour
 
     Animator animator;
 
-    // Variável de ataque
+    // Variï¿½vel de ataque
     public bool podeAtacar = false;
 
-    // Variáveis controle de detecção do inimigo
+    // Variï¿½veis controle de detecï¿½ï¿½o do inimigo
     public float velocidade;
     bool chegouAoDestino = true;
 
@@ -40,10 +40,10 @@ public class EnemyController : MonoBehaviour
             return;
         }
 
-        // Criar uma função que desabilita o podeAtacar
-        // e desabilita também a animação estaAtacando
-        // Na animação do inimigo, criar um evento
-        // que chama essa função. Fim :)
+        // Criar uma funï¿½ï¿½o que desabilita o podeAtacar
+        // e desabilita tambï¿½m a animaï¿½ï¿½o estaAtacando
+        // Na animaï¿½ï¿½o do inimigo, criar um evento
+        // que chama essa funï¿½ï¿½o. Fim :)
 
         if( seguirJogador == true)
         {
@@ -54,7 +54,7 @@ public class EnemyController : MonoBehaviour
             // Olhar para o jogador
             float rotacaoX = transform.rotation.x;
             transform.LookAt( posicaoJogador );
-            // Corrigir posição X
+            // Corrigir posiï¿½ï¿½o X
             transform.rotation = Quaternion.Euler(
                     rotacaoX,
                     transform.rotation.eulerAngles.y,

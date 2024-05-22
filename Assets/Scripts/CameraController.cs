@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FishNet.Connection;
+using FishNet.Managing;
+using FishNet.Object;
 
-public class CameraController : MonoBehaviour
+public class CameraController : NetworkBehaviour
 {
 
     Transform jogador;
@@ -13,8 +16,14 @@ public class CameraController : MonoBehaviour
     float mouseY;
 
     // Start is called before the first frame update
-    void Start()
+    public override void OnStartClient()
     {
+        base.OnStartClient();
+
+        if(base.IsOwner == false) // isOwner para se referir ao dono do script, ao proprietário
+        {
+            return; // se não for o dono do script, o código encerra aqui.
+        }
 
         jogador = GameObject.FindWithTag("Player").transform;
 

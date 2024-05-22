@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FishNet.Connection;
+using FishNet.Object;
+using FishNet.Managing;
 
 
-
-public class PlayerControllerBackup : MonoBehaviour
+public class PlayerControllerBackup : NetworkBehaviour
 {
 
     public float gravidade = 9.87f;
@@ -16,16 +18,27 @@ public class PlayerControllerBackup : MonoBehaviour
 
     EstadoPulo estadoPulo;
 
-    // Módulo de inputs
+    // Mï¿½dulo de inputs
     float inputHorizontal;
     float inputVertical;
     bool inputPulo;
 
     Vector3 movimento;
 
-    void Start()
+    public override void OnStartClient()
     {
+        base.OnStartClient();
+        GameObject.Find("Camera").gameObject.SetActive(false);
+
+        if(base.IsOwner == false) // isOwner para se referir ao dono do script, ao proprietÃ¡rio
+        {
+            return; // se nÃ£o for o dono do script, o cÃ³digo encerra aqui.
+        }
+        
         cc = GetComponent<CharacterController>();
+
+        transform.Find("Main Camera").gameObject.SetActive(true);
+        
         estadoPulo = EstadoPulo.Solo;
         movimento = Vector3.zero;
     }
@@ -33,7 +46,12 @@ public class PlayerControllerBackup : MonoBehaviour
     void Update()
     {
 
-        // Módulo de identificação dos inputs
+        if(base.IsOwner == false) // isOwner para se referir ao dono do script, ao proprietÃ¡rio
+        {
+            return; // se nÃ£o for o dono do script, o cÃ³digo encerra aqui.
+        }
+
+        // Mï¿½dulo de identificaï¿½ï¿½o dos inputs
         inputHorizontal = Input.GetAxis("Horizontal");
         inputVertical = Input.GetAxis("Vertical");
         inputPulo = Input.GetKeyDown(KeyCode.Space);
